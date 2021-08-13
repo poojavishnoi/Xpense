@@ -65,44 +65,38 @@
 
         let totalExpense = 0;
         headingEl.textContent = (`Expense: ${totalExpense}`);
-
-        
+ 
         function addExpenseToTotal(){
-            if(document.getElementById("inputAmount").value !== Number || document.getElementById("inputDesc").value == ""){
+            if(document.getElementById("inputAmount").value.length == 0 || document.getElementById("inputDesc").value == ""){
                 alert("Please enter a valid input");
 
             }else{
-            const expenseItem = {};
-            const textAmount = inputElement.value;
-            const inputDesc = inputDescEl.value;
-            const expense = parseInt(textAmount, 10);
+                        
+                const expenseItem = {};
+                const textAmount = inputElement.value;
+                const inputDesc = inputDescEl.value;
+                const expense = parseInt(textAmount, 10);
 
-            console.log({inputDesc, textAmount});
-            expenseItem.desc = inputDesc;
-            expenseItem.amount = expense;
-            expenseItem.moment = new Date();
+                console.log({inputDesc, textAmount});
+                expenseItem.desc = inputDesc;
+                expenseItem.amount = expense;
+                expenseItem.moment = new Date();
 
-            allExpense.push(expenseItem);           
+                allExpense.push(expenseItem);           
 
-            totalExpense += expense;
-            updateAmount(totalExpense);
+                totalExpense += expense;
+                updateAmount(totalExpense);
 
-            renderList(allExpense);
+                renderList(allExpense);
             
-            inputElement.value = "";
-            inputDescEl.value = "";
+                inputElement.value = "";
+                inputDescEl.value = "";
             }
 
         }
         
         const element = document.querySelector("#btnAddExpense");
-    
         element.addEventListener("click", addExpenseToTotal, false);
-        
-
-        
-        
-
 
         function getDateString(moment){
             return moment.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'});
@@ -114,23 +108,20 @@
             renderList(newArr);     
             totalExpense -= amount;
             updateAmount(totalExpense);
-            allExpense = newArr;
+            allExpense = newArr;           
 
         }
 
         function updateAmount(){
             let someText = `Expense: ${totalExpense}`;
             headingEl.textContent = someText;
-
- 
+            
         }
 
         function renderList(arrOfList){
             const allExpenseHtml = arrOfList.map(expense =>  createTableItem(expense));
             const joinedExpenseHtml = allExpenseHtml.join("");
             expenseTableEl.innerHTML = joinedExpenseHtml;
-            allExpense = arrOfList;
-
 
         }         
         

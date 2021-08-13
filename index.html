@@ -63,11 +63,15 @@
 
         let allExpense = [];
 
-        let totalExpense = null;
-        headingEl.textContent = (`Expense: ${localStorage.getItem("headingTotal")}`);
+        let totalExpense = 0;
+        headingEl.textContent = (`Expense: ${totalExpense}`);
 
         
         function addExpenseToTotal(){
+            if(document.getElementById("inputAmount").value.length == 0 || document.getElementById("inputDesc").value.length == 0){
+                alert("Please enter a valid input");
+
+            }else{
             const expenseItem = {};
             const textAmount = inputElement.value;
             const inputDesc = inputDescEl.value;
@@ -87,11 +91,16 @@
             
             inputElement.value = "";
             inputDescEl.value = "";
+            }
 
         }
         
         const element = document.querySelector("#btnAddExpense");
+    
         element.addEventListener("click", addExpenseToTotal, false);
+        
+
+        
         
 
 
@@ -110,8 +119,7 @@
         }
 
         function updateAmount(){
-            localStorage.setItem("headingTotal", totalExpense);
-            let someText = `Expense: ${localStorage.getItem("headingTotal")}`;
+            let someText = `Expense: ${totalExpense}`;
             headingEl.textContent = someText;
 
  

@@ -68,7 +68,7 @@
 
         
         function addExpenseToTotal(){
-            if(document.getElementById("inputAmount").value.length == 0 || document.getElementById("inputDesc").value.length == 0){
+            if(document.getElementById("inputAmount").value !== Number || document.getElementById("inputDesc").value == ""){
                 alert("Please enter a valid input");
 
             }else{
